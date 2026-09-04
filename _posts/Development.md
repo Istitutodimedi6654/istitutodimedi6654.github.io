@@ -1,3 +1,8 @@
+---
+layout: page
+title: محاور أساسية تدير التنسيق البصري
+permalink: /Development.md/
+---
 <mark>تنقسم إلى ثلاثة محاور أساسية تدير البرمجة، التنسيق البصري، وهيكلة المحتوى.</mark>
 ### 1. البرمجة والتطوير (Development)
 * **<a href="https://www.javascript.com" target="_blank" rel="noopener noreferrer">JavaScript</a>:**   لغة البرمجة الأساسية لإضافة التفاعلية والديناميكية لصفحات الويب.
