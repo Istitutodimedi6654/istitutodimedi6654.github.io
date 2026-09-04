@@ -9,6 +9,8 @@ title: الفرق بين أنواع سيرفرات VPS
 <li>
 <div><strong>المفهوم:</strong> سيرفر افتراضي مشترك.</div>
 </li>
+
+
   
 <li>
 <div><strong>كيف يعمل؟</strong> تقنية الـ Virtualization تتيح للمزود بيع سيرفر ضخم لعدة مستخدمين. المعالج (<strong>CPU</strong>) والذاكرة متشاركان بشكل ديناميكي (<em>Overbooking / Overselling</em>).</div>
