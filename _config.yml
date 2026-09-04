@@ -12,7 +12,7 @@ description: أكواد وتنسيقات عامة وبسيطة
 # لإستخدام صورة هويتك في GitHub ضع https://github.com/<اسم_المستخدم>.png في المتغير، مثلا لهويتي الشخصية أستخدم:
 # avatar: https://github.com/a3ammar.png
 # ولإخفاء الصورة نهائيًا احذف الرابط من المتغير
-avatar: https://44kg.com/post/post_logo.png?ver=1.9
+avatar: https://flyingway.com/filedata/fetch?filedataid=13398
 
 
 #
@@ -24,10 +24,10 @@ footer-links:
   dribbble:
   email:
   facebook: https://www.facebook.com/flyingwaycom/
-  flickr:
+  flickr: @flying_way
   github: aboayoob-tech
-  instagram:
-  linkedin:
+  instagram: @flying_way
+  linkedin: @flying_way
   pinterest:
   rss:  RSS
   twitter: @flying_way
