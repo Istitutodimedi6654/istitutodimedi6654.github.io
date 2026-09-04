@@ -1,88 +1,65 @@
-#
-# في هذا الملف ستجد كل المتغيرات التي تتحكم في إعدادات المدونة، شخصّها على حسب متطلباتك
-#
-
-# اسم المدونة الذي سيظهر في الأعلى
-name:معلوماتي
-
-# وصف قصير للمدونة والذي سيظهر تحت اسمها وكجزء من عنوان المدونة في محركات البحث
-description: مدونة جديدة
-
-# رابط صورة المدونة
-# لإستخدام صورة هويتك في GitHub ضع https://github.com/<اسم_المستخدم>.png في المتغير، مثلا لهويتي الشخصية أستخدم:
-# avatar: https://github.com/a3ammar.png
-# ولإخفاء الصورة نهائيًا احذف الرابط من المتغير
-avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
-
-
-#
-# المتغيرات الآتية هي خيارية، عدل عليها إذا أردت تخصيص أكثر للمدونة
-#
-
-# لكل هوية تضعها هنا ستظهر أيقونة في أسفل المدونة
-footer-links:
-  dribbble:
-  email:
-  facebook:
-  flickr:
-  github: a3ammar/jekyll-now
-  instagram:
-  linkedin:
-  pinterest:
-  rss: # ضع أي قيمة هنا لتظهر أيقونة RSS
-  twitter: jekyllrb
-  stackoverflow: # هويتك في stackoverflow مثلا: "users/50476/bart-kiers"
-  youtube: # إما channel/<عنوان_قناتك_الطويل> أو user/<اسم-مستخدمك>
-  googleplus: # رقم التعريف عندما تزور هويتك (كل ما يتبع plus.google.com/)
-
-
-# ضع الاسم Disqus القصير الخاص بك (الاسم القصير وليس اسم المستخدم) لتفعيل الردود على المدونة
-# ستجد الاسم القصير الخاص بك في إعدادات حسابك في Disqus
-disqus:
-
-# إذا أردت تفعيل إحصاءات الزوار في Google Analytics أدخل المعرف الخاص بك (مثلاً UA-2110908-2)
-google_analytics:
-
-# عنوان موقعك مثلاً http://barryclark.github.io
-# يستخدم هذا المتغير في الـRSS والـSitemap.xml
-url:
-
-# إذا كانت المدونة خاصة للصفحات المشاريع في GitHub (http://yourusername.github.io/repository-name مثلاً) عدل هذا المتغير ليطابق اسم المشروع
-baseurl: ""
-
-
-#
-# هذه المتغيرات خاصة بـJekyll ولا أنصح بتعديلها، لذلك لا حاجة لشرحها
-#
-
-permalink: /:title/
-
-# The release of Jekyll Now that you're using
-version: v1.2.0
-
-# Jekyll 3 now only supports Kramdown for Markdown
+---
+version: 4.4.1
+name: Jekyll • Simple, blog-aware, static sites
+description: Transform your plain text into static websites and blogs
+url: https://jekyllrb.com
+repository: https://github.com/jekyll/jekyll
+site_branch: master
+timezone: America/Los_Angeles
+twitter:
+  username: jekyllrb
+logo: "/img/logo-2x.png"
+google_analytics_id: UA-50755011-1
+google_site_verification: onQcXpAvtHBrUI5LlroHNE_FP0b2qvFyPq7VZw36iEY
+cloudinary_url: https://res.cloudinary.com/jekyll/image/upload/f_auto,q_auto,w_404
+collections:
+  docs:
+    permalink: "/:collection/:path/"
+    output: true
+  posts:
+    permalink: "/news/:year/:month/:day/:title/"
+    output: true
+  tutorials:
+    permalink: "/:collection/:path/"
+    output: true
+defaults:
+- scope:
+    path: _docs
+    type: docs
+  values:
+    layout: docs
+- scope:
+    path: _posts
+    type: posts
+  values:
+    layout: news_item
+- scope:
+    path: _tutorials
+    type: tutorials
+  values:
+    layout: tutorials
+- scope:
+    path: ''
+  values:
+    image: "/img/jekyll-og.png"
+future: true
+plugins:
+- jekyll-avatar
+- jekyll-feed
+- jekyll-mentions
+- jekyll-redirect-from
+- jekyll-seo-tag
+- jekyll-sitemap
+- jemoji
+feed:
+  categories:
+  - release
 kramdown:
-  # Use GitHub flavored markdown, including triple backtick fenced code blocks
-  input: GFM
-  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
-  syntax_highlighter: rouge
   syntax_highlighter_opts:
-    # Use existing pygments syntax highlighting css
-    css_class: "highlight"
-
-# Set the Sass partials directory, as we're using @imports
+    default_lang: plaintext
 sass:
-  style: :expanded # You might prefer to minify using :compressed
-
-# Use the following plug-ins
-gems:
-  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
-  - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
-
-# Exclude these files from your production _site
+  style: compressed
+strict_front_matter: true
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE
-  - README.md
-  - CNAME
+- icomoon-selection.json
+- readme.md
