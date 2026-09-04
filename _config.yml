@@ -54,7 +54,16 @@ baseurl: "https://aboayoob-tech.github.io"
 #
 # هذه المتغيرات خاصة بـJekyll ولا أنصح بتعديلها، لذلك لا حاجة لشرحها
 #
-
+collections:
+  docs:
+    permalink: "/:collection/:path/"
+    output: true
+  posts:
+    permalink: "/news/:year/:month/:day/:title/"
+    output: true
+  tutorials:
+    permalink: "/:collection/:path/"
+    output: true
 permalink: /:title/
 
 # The release of Jekyll Now that you're using
