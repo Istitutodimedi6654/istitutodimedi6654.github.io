@@ -1,7 +1,6 @@
 ---
-layout: page
+layout: post
 title: محاور أساسية تدير التنسيق البصري
-permalink: /Development.md/
 ---
 <mark>تنقسم إلى ثلاثة محاور أساسية تدير البرمجة، التنسيق البصري، وهيكلة المحتوى.</mark>
 ### 1. البرمجة والتطوير (Development)
