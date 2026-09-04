@@ -1,21 +1,155 @@
----
----
+/***************/
+/* MEYER RESET */
+/***************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
 
-//
-// IMPORTS
-//
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
 
-@import "reset";
-@import "variables";
-@import "fonts";
-// Syntax highlighting @import is at the bottom of this file
+body {
+  line-height: 1;
+}
 
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #14171a;
+  --bg-elevated: #1e2227;
+  --fg: #edeef0;
+  --fg-muted: #9aa3ac;
+  --border: #2c3137;
+  --accent: #6cabf2;
+  --shadow: rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-elevated: #f6f7f8;
+  --fg: #222222;
+  --fg-muted: #666666;
+  --border: #eaeaea;
+  --accent: #2f6fb0;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+@font-face {
+  font-family: "Noto Naskh Arabic";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/NotoNaskhArabic-Regular.woff2") format("woff2"), url("fonts/NotoNaskhArabic-Regular.woff") format("woff"), url("fonts/NotoNaskhArabic-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Noto Naskh Arabic";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/NotoNaskhArabic-Bold.woff2") format("woff2"), url("fonts/NotoNaskhArabic-Bold.woff") format("woff"), url("fonts/NotoNaskhArabic-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/NotoKufiArabic-Regular.woff2") format("woff2"), url("fonts/NotoKufiArabic-Regular.woff") format("woff"), url("fonts/NotoKufiArabic-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Noto Kufi Arabic";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/NotoKufiArabic-Bold.woff2") format("woff2"), url("fonts/NotoKufiArabic-Bold.woff") format("woff"), url("fonts/NotoKufiArabic-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kawkab Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/KawkabMono-Regular.woff2") format("woff2"), url("fonts/KawkabMono-Regular.woff") format("woff"), url("fonts/KawkabMono-Regular.ttf") format("truetype");
+}
 /**************/
 /* BASE RULES */
 /**************/
+table {
+  padding: 0;
+}
+
+table tr {
+  border-top: 1px solid var(--border);
+  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+}
+
+table tr:nth-child(2n) {
+  background-color: var(--bg-elevated);
+}
+
+table tr th {
+  font-weight: bold;
+  border: 1px solid var(--border);
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+
+table tr td {
+  border: 1px solid var(--border);
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+
+table tr th :first-child, table tr td :first-child {
+  margin-top: 0;
+}
+
+table tr th :last-child, table tr td :last-child {
+  margin-bottom: 0;
+}
 
 html {
-  direction: rtl;
   font-size: 100%;
   height: 100%;
 }
@@ -24,10 +158,11 @@ body {
   display: flex;
   min-height: 100%;
   flex-direction: column;
-  background: $white;
-  font: 19px/1.4 $base-font-family;
+  background: var(--bg);
+  font: 19px/1.4 Helvetica, Arial, sans-serif;
   line-height: 1.6;
-  color: $darkGray;
+  color: var(--fg);
+  transition: background-color .15s ease, color .15s ease;
 }
 
 .container {
@@ -38,23 +173,23 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $darkerGray;
+  color: var(--fg);
   font-weight: bold;
-
   line-height: 1.7;
   margin: 1em 0 15px;
   padding: 0;
-
-  @include mobile {
+}
+@media screen and (max-width: 640px) {
+  h1, h2, h3, h4, h5, h6 {
     line-height: 1.4;
   }
 }
 
 h1 {
   font-size: 30px;
-  a {
-    color: inherit;
-  }
+}
+h1 a {
+  color: inherit;
 }
 
 h2 {
@@ -67,20 +202,26 @@ h3 {
 
 h4 {
   font-size: 18px;
-  color: $gray;
+  color: var(--fg-muted);
 }
 
-p {
+p, table {
   margin: 15px 0;
 }
 
 a {
-  color: $blue;
+  color: var(--accent);
   text-decoration: none;
   cursor: pointer;
-  &:hover, &:active {
-    color: $blue;
-  }
+}
+a:hover, a:active {
+  color: var(--accent);
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 ul, ol {
@@ -120,18 +261,15 @@ img {
 
 blockquote {
   margin: 1.8em .8em;
-  border-right: 2px solid $gray;
+  border-right: 2px solid var(--fg-muted);
   padding: 0.1em 1em;
-  color: $gray;
+  color: var(--fg-muted);
 }
 
-// Fixes images in popup boxes from Google Translate
 .gmnoprint img {
   max-width: none;
 }
 
-// Nicolas Gallagher's micro clearfix hack
-// http://nicolasgallagher.com/micro-clearfix-hack/
 .clearfix:before,
 .clearfix:after {
   content: " ";
@@ -145,20 +283,16 @@ blockquote {
 /*********************/
 /* LAYOUT / SECTIONS */
 /*********************/
-
-//
-// .masthead
-//
-
 .wrapper-masthead {
   margin-bottom: 50px;
 }
 
 .masthead {
   padding: 20px 0;
-  border-bottom: 1px solid $lightGray;
-
-  @include mobile {
+  border-bottom: 1px solid var(--border);
+}
+@media screen and (max-width: 640px) {
+  .masthead {
     text-align: center;
   }
 }
@@ -168,22 +302,23 @@ blockquote {
   width: 70px;
   height: 70px;
   margin-left: 15px;
-
-  @include mobile {
+}
+@media screen and (max-width: 640px) {
+  .site-avatar {
     float: none;
     display: block;
     margin: 0 auto;
   }
-
-  img {
-    border-radius: 5px;
-  }
+}
+.site-avatar img {
+  border-radius: 5px;
 }
 
 .site-info {
   float: right;
-
-  @include mobile {
+}
+@media screen and (max-width: 640px) {
+  .site-info {
     float: none;
     display: block;
     margin: 0 auto;
@@ -192,7 +327,7 @@ blockquote {
 
 .site-name {
   margin: 0;
-  color: $darkGray;
+  color: var(--fg);
   cursor: pointer;
   font-weight: normal;
   font-size: 28px;
@@ -200,54 +335,63 @@ blockquote {
 
 .site-description {
   margin: -5px 0 0 0;
-  color: $gray;
+  color: var(--fg-muted);
   font-size: 16px;
-
-  @include mobile {
+}
+@media screen and (max-width: 640px) {
+  .site-description {
     margin: 3px 0;
   }
 }
 
 nav {
   float: left;
-  margin-top: 23px; // @TODO: Vertically middle align
+  direction: rtl;
+  display: flex;
+  align-items: center;
+  margin-top: 23px;
   font-size: 18px;
-
-  @include mobile {
+}
+@media screen and (max-width: 640px) {
+  nav {
     float: none;
     margin-top: 9px;
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     font-size: 16px;
   }
-
-  a {
-    margin-right: 20px;
-    color: $darkGray;
-    text-align: left;
-    font-weight: normal;
-
-    @include mobile {
-      margin: 0 10px;
-      color: $blue;
-    }
+}
+nav a {
+  margin-right: 20px;
+  color: var(--fg);
+  text-align: left;
+  font-weight: normal;
+}
+@media screen and (max-width: 640px) {
+  nav a {
+    margin: 0 10px;
+    color: var(--accent);
   }
 }
 
-.not-found {
-  img { width: 400px; }
+.not-found img {
+  width: 400px;
 }
-
-//
-// .main
-//
 
 #main {
   flex: 1;
+  direction: rtl;
 }
 
 .posts > .post {
   padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
+  border-bottom: 1px solid var(--border);
+}
+.posts > .post .date {
+  margin-top: 0;
+  text-align: right;
+  font-size: 15px;
 }
 
 .posts > .post:last-child {
@@ -255,14 +399,13 @@ nav {
   border-bottom: none;
 }
 
-.post {
-  .comments {
-    margin-top: 10px;
-  }
-
-  .read-more {
-    font-size: 15px;
-  }
+.post .comments {
+  margin-top: 10px;
+}
+.post .read-more {
+  display: inline-block;
+  margin-inline-end: 16px;
+  font-size: 15px;
 }
 
 .footnotes {
@@ -283,43 +426,581 @@ nav {
 .date {
   margin-top: 2em;
   text-align: left;
-  color: $gray;
+  color: var(--fg-muted);
 }
 
 .wrapper-footer {
   margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background-color: var(--bg-elevated);
 }
 
 footer {
   padding: 20px 0;
   text-align: center;
 }
-
-
-//
-// FOUT fonts
-//
-
-.naskh-font-loaded {
-  body { font-family: $body-font-family; }
+footer a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin: 0 4px;
+  border-radius: 50%;
+  color: var(--fg-muted);
+}
+footer a:hover, footer a:active {
+  color: var(--accent);
+  background: var(--bg);
 }
 
-.kufi-font-loaded {
-  h1, h2, h3, h4, h5, h6 { font-family: $heading-font-family; }
-  .site-name             { font-family: $heading-font-family; }
-  nav                    { font-family: $heading-font-family; }
-  .read-more             { font-family: $heading-font-family; }
-  .date                  { font-family: $heading-font-family; }
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  margin-right: 10px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  vertical-align: middle;
+}
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.theme-toggle:focus-visible {
+  border-radius: 50%;
+}
+.theme-toggle .icon {
+  width: 17px;
+  height: 17px;
+}
+.theme-toggle .icon-moon {
+  display: none;
 }
 
-.kawkab-font-loaded {
-  code { font-family: $code-font-family; }
+:root[data-theme="light"] .theme-toggle .icon-sun {
+  display: none;
+}
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: block;
 }
 
-// Settled on moving the import of syntax highlighting to the bottom of the CSS
-// ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
-@import "highlights";
-@import "svg-icons";
+.naskh-font-loaded body {
+  font-family: Noto Naskh Arabic, Helvetica, Arial, sans-serif;
+}
+
+.kufi-font-loaded h1, .kufi-font-loaded h2, .kufi-font-loaded h3, .kufi-font-loaded h4, .kufi-font-loaded h5, .kufi-font-loaded h6 {
+  font-family: Noto Kufi Arabic, Helvetica, Arial, sans-serif;
+}
+.kufi-font-loaded .site-name {
+  font-family: Noto Kufi Arabic, Helvetica, Arial, sans-serif;
+}
+.kufi-font-loaded nav {
+  font-family: Noto Kufi Arabic, Helvetica, Arial, sans-serif;
+}
+.kufi-font-loaded .read-more {
+  font-family: Noto Kufi Arabic, Helvetica, Arial, sans-serif;
+}
+.kufi-font-loaded .date {
+  font-family: Noto Kufi Arabic, Helvetica, Arial, sans-serif;
+}
+
+.kawkab-font-loaded code {
+  font-family: Kawkab Mono, Bitstream Vera Sans Mono, Courier, monospace;
+}
+
+.home .bio,
+.home .recent-posts,
+.home .projects,
+.home .contact {
+  margin-bottom: 3em;
+}
+.home .bio h1 {
+  margin-top: 0;
+  font-size: 34px;
+}
+.home .bio p {
+  color: var(--fg-muted);
+  font-size: 19px;
+}
+.home h2 {
+  font-size: 22px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.home .contact p {
+  color: var(--fg-muted);
+}
+.home .contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 1em;
+  max-width: 320px;
+}
+.home .contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--fg);
+  background: var(--bg-elevated);
+  transition: border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.home .contact-link .icon {
+  width: 22px;
+  height: 22px;
+}
+.home .contact-link:hover, .home .contact-link:active {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 2px 10px var(--shadow);
+}
+.home .contact-link:focus-visible {
+  border-radius: 999px;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 1.2em 0;
+}
+
+.card-list .post {
+  position: relative;
+  display: block;
+  padding: 18px 20px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--fg);
+  text-decoration: none;
+  transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.card-list .post h2, .card-list .post h3 {
+  margin: 0 0 6px;
+  font-size: 19px;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.card-list .post .post-link {
+  color: var(--fg);
+}
+.card-list .post .post-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.card-list .post .entry {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 16px;
+}
+.card-list .post .entry a {
+  position: relative;
+  z-index: 1;
+}
+.card-list .post .read-more {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin-top: 10px;
+  margin-inline-end: 16px;
+  color: var(--accent);
+  font-size: 15px;
+}
+.card-list .post:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px var(--shadow);
+  transform: translateY(-2px);
+}
+
+.highlight, code {
+  direction: ltr;
+}
+
+.highlight {
+  background-color: var(--bg-elevated);
+  padding: 7px 7px 7px 10px;
+  border: 1px solid var(--border);
+  box-shadow: 3px 3px var(--shadow);
+  margin: 20px 0 20px 0;
+  overflow: scroll;
+}
+
+code {
+  font-family: Bitstream Vera Sans Mono, Courier, monospace;
+  font-weight: 400;
+  font-size: 13px;
+  unicode-bidi: embed;
+}
+code.highlighter-rouge {
+  color: #dd2b55;
+  padding: 0 2px;
+}
+
+.highlight .c {
+  color: #586E75;
+}
+
+/* Comment */
+.highlight .err {
+  color: #93A1A1;
+}
+
+/* Error */
+.highlight .g {
+  color: #93A1A1;
+}
+
+/* Generic */
+.highlight .k {
+  color: #859900;
+}
+
+/* Keyword */
+.highlight .l {
+  color: #93A1A1;
+}
+
+/* Literal */
+.highlight .n {
+  color: #93A1A1;
+}
+
+/* Name */
+.highlight .o {
+  color: #859900;
+}
+
+/* Operator */
+.highlight .x {
+  color: #CB4B16;
+}
+
+/* Other */
+.highlight .p {
+  color: #93A1A1;
+}
+
+/* Punctuation */
+.highlight .cm {
+  color: #586E75;
+}
+
+/* Comment.Multiline */
+.highlight .cp {
+  color: #859900;
+}
+
+/* Comment.Preproc */
+.highlight .c1 {
+  color: #586E75;
+}
+
+/* Comment.Single */
+.highlight .cs {
+  color: #859900;
+}
+
+/* Comment.Special */
+.highlight .gd {
+  color: #2AA198;
+}
+
+/* Generic.Deleted */
+.highlight .ge {
+  color: #93A1A1;
+  font-style: italic;
+}
+
+/* Generic.Emph */
+.highlight .gr {
+  color: #DC322F;
+}
+
+/* Generic.Error */
+.highlight .gh {
+  color: #CB4B16;
+}
+
+/* Generic.Heading */
+.highlight .gi {
+  color: #859900;
+}
+
+/* Generic.Inserted */
+.highlight .go {
+  color: #93A1A1;
+}
+
+/* Generic.Output */
+.highlight .gp {
+  color: #93A1A1;
+}
+
+/* Generic.Prompt */
+.highlight .gs {
+  color: #93A1A1;
+  font-weight: bold;
+}
+
+/* Generic.Strong */
+.highlight .gu {
+  color: #CB4B16;
+}
+
+/* Generic.Subheading */
+.highlight .gt {
+  color: #93A1A1;
+}
+
+/* Generic.Traceback */
+.highlight .kc {
+  color: #CB4B16;
+}
+
+/* Keyword.Constant */
+.highlight .kd {
+  color: #268BD2;
+}
+
+/* Keyword.Declaration */
+.highlight .kn {
+  color: #859900;
+}
+
+/* Keyword.Namespace */
+.highlight .kp {
+  color: #859900;
+}
+
+/* Keyword.Pseudo */
+.highlight .kr {
+  color: #268BD2;
+}
+
+/* Keyword.Reserved */
+.highlight .kt {
+  color: #DC322F;
+}
+
+/* Keyword.Type */
+.highlight .ld {
+  color: #93A1A1;
+}
+
+/* Literal.Date */
+.highlight .m {
+  color: #2AA198;
+}
+
+/* Literal.Number */
+.highlight .s {
+  color: #2AA198;
+}
+
+/* Literal.String */
+.highlight .na {
+  color: #93A1A1;
+}
+
+/* Name.Attribute */
+.highlight .nb {
+  color: #B58900;
+}
+
+/* Name.Builtin */
+.highlight .nc {
+  color: #268BD2;
+}
+
+/* Name.Class */
+.highlight .no {
+  color: #CB4B16;
+}
+
+/* Name.Constant */
+.highlight .nd {
+  color: #268BD2;
+}
+
+/* Name.Decorator */
+.highlight .ni {
+  color: #CB4B16;
+}
+
+/* Name.Entity */
+.highlight .ne {
+  color: #CB4B16;
+}
+
+/* Name.Exception */
+.highlight .nf {
+  color: #268BD2;
+}
+
+/* Name.Function */
+.highlight .nl {
+  color: #93A1A1;
+}
+
+/* Name.Label */
+.highlight .nn {
+  color: #93A1A1;
+}
+
+/* Name.Namespace */
+.highlight .nx {
+  color: var(--fg-muted);
+}
+
+/* Name.Other */
+.highlight .py {
+  color: #93A1A1;
+}
+
+/* Name.Property */
+.highlight .nt {
+  color: #268BD2;
+}
+
+/* Name.Tag */
+.highlight .nv {
+  color: #268BD2;
+}
+
+/* Name.Variable */
+.highlight .ow {
+  color: #859900;
+}
+
+/* Operator.Word */
+.highlight .w {
+  color: #93A1A1;
+}
+
+/* Text.Whitespace */
+.highlight .mf {
+  color: #2AA198;
+}
+
+/* Literal.Number.Float */
+.highlight .mh {
+  color: #2AA198;
+}
+
+/* Literal.Number.Hex */
+.highlight .mi {
+  color: #2AA198;
+}
+
+/* Literal.Number.Integer */
+.highlight .mo {
+  color: #2AA198;
+}
+
+/* Literal.Number.Oct */
+.highlight .sb {
+  color: #586E75;
+}
+
+/* Literal.String.Backtick */
+.highlight .sc {
+  color: #2AA198;
+}
+
+/* Literal.String.Char */
+.highlight .sd {
+  color: #93A1A1;
+}
+
+/* Literal.String.Doc */
+.highlight .s2 {
+  color: #2AA198;
+}
+
+/* Literal.String.Double */
+.highlight .se {
+  color: #CB4B16;
+}
+
+/* Literal.String.Escape */
+.highlight .sh {
+  color: #93A1A1;
+}
+
+/* Literal.String.Heredoc */
+.highlight .si {
+  color: #2AA198;
+}
+
+/* Literal.String.Interpol */
+.highlight .sx {
+  color: #2AA198;
+}
+
+/* Literal.String.Other */
+.highlight .sr {
+  color: #DC322F;
+}
+
+/* Literal.String.Regex */
+.highlight .s1 {
+  color: #2AA198;
+}
+
+/* Literal.String.Single */
+.highlight .ss {
+  color: #2AA198;
+}
+
+/* Literal.String.Symbol */
+.highlight .bp {
+  color: #268BD2;
+}
+
+/* Name.Builtin.Pseudo */
+.highlight .vc {
+  color: #268BD2;
+}
+
+/* Name.Variable.Class */
+.highlight .vg {
+  color: #268BD2;
+}
+
+/* Name.Variable.Global */
+.highlight .vi {
+  color: #268BD2;
+}
+
+/* Name.Variable.Instance */
+.highlight .il {
+  color: #2AA198;
+}
+
+/* Literal.Number.Integer.Long */
+.icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.footer .icon {
+  width: 20px;
+  height: 20px;
+}
